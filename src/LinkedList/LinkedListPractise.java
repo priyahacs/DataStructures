@@ -184,14 +184,95 @@ public class LinkedListPractise{
 		return head;
 		
 	}
+	
+	public static boolean checkPalindrome1(Node head){
+		
+		Node slow = head;
+		Node fast = head;
+		
+		Stack<Integer> s1 = new Stack<Integer>();
+		
+		while(fast != null && fast.next != null)
+		{
+			s1.push(slow.num);
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		
+		if (fast != null)
+		{
+			slow = slow.next;
+		}
+		while(slow != null)
+		{
+			if(s1.isEmpty())
+			{
+				return false;
+			}
+			int a = s1.pop().intValue();
+			if(slow.num != a)
+			{
+				return false;
+			}
+			slow = slow.next;
+		}
+		
+		return true;
+	}
+	
+	public static boolean checkPalindrome2(Node head){
+		
+		Node current = head;
+		Node l2 = null;
+		int count =0;
+		while(current != null)
+		{
+			Node add = new Node(current.num,l2);
+			l2 = add;
+			current = current.next;
+			count ++;
+		}
+		
+		if(count % 2 ==0)
+		{
+			count = count/2;
+		}
+		else
+		{
+			count = ((count+1)/2) -1;
+		}
+		
+		Node s1 = head;
+		Node s2 = l2;
+		
+		while(count >0)
+		{
+			if(s1.num != s2.num)
+			{
+				return false;
+			}
+			
+			s1 = s1.next;
+			s2= s2.next;
+			count --;
+		}
+		
+		l2.printElements();
+		
+		return true;
+	}
+	
+	
+	/*Driver function to test all the functions of the linked list*/
 	public static void main(String[] args)
 	{
-		Node A = new Node(1,null);
-		Node B = new Node(2,null);
-		Node C = new Node(3,null);
-		Node D = new Node(4,null);
-		Node E = new Node(5,null);
-		E.next = C;
+		Node A = new Node(0,null);
+		Node B = new Node(1,null);
+		Node C = new Node(2,null);
+		Node D = new Node(2,null);
+		Node E = new Node(3,null);
+		Node F = new Node(0,null);
+		//E.next = C
 		
 		Node head = A;
 		
@@ -199,6 +280,7 @@ public class LinkedListPractise{
 		A.insertAtTail(C);
 		A.insertAtTail(D);
 		A.insertAtTail(E);
+		A.insertAtTail(F);
 		
 		
 		//A.printElements();
@@ -225,11 +307,19 @@ public class LinkedListPractise{
 		result.printElements();
 		*/
 		
-		/*Detect the loop and remove it*/
-
+		/*Detect the loop and remove it
 		Node s1 = detectCycle(head);
-		s1.printElements();		
+		s1.printElements();		*/
 	
+		
+		/* Check whether the given list is  palindrome*/
+		
+		//boolean result = checkPalindrome1(head);
+		//System.out.println(result);
+		//head.printElements();
+		
+		boolean result2 = checkPalindrome2(head);
+		System.out.println(result2);
 		
 	}
 }
