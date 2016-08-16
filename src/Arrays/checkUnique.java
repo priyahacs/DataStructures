@@ -1,4 +1,4 @@
-package Arrays_Strings;
+package Arrays;
 
 
 import java.util.*;
