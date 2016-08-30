@@ -174,7 +174,8 @@ public class BinarySearchTreePractise {
 		BinaryTreeNode res = bst.searchBST(root,70);
 		if(res != null)
 		{
-		System.out.println("element found");}
+		System.out.println("element found");
+		}
 		else
 		{
 			System.out.println("element not found");
