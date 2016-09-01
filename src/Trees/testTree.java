@@ -1,4 +1,7 @@
 package Trees;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.LinkedList;
 
 class Node{
 	
@@ -180,6 +183,57 @@ public class testTree {
 		return min;
 	}
 	
+	/*Level order traversal or BFS*/
+	public void levelOrder(Node root)
+	{
+		Queue <Node> myQ  = new LinkedList<Node>();
+		
+		myQ.add(root);
+		while(!myQ.isEmpty())
+		{
+			Node temp = myQ.poll();
+			
+			System.out.print(temp.getData()+" ");
+			
+			
+			if(temp.getLeft() != null)
+			{
+				myQ.add(temp.getLeft());
+			}
+			if(temp.getRight() != null)
+			{
+				myQ.add(temp.getRight());
+			}
+		}
+		
+	}
+	
+	
+	/*DFS traversal of a tree*/
+	public void DFS(Node root)
+	{
+		Stack<Node> st = new Stack<Node>();
+		st.push(root);
+		
+		while(!st.isEmpty())
+		{
+			Node temp  = st.pop();
+			
+			System.out.print(temp.getData()+" ");
+			
+			if(temp.getRight() != null)
+			{
+				st.push(temp.getRight());
+			}
+			if(temp.getLeft() != null)
+			{
+				st.push(temp.getLeft());
+			}
+			
+		}
+	}
+	
+	
 	/*Driver code*/	
 	public static void main(String[] args)
 	{
@@ -223,8 +277,7 @@ public class testTree {
 	   System.out.println();
 	   
 	   /*Deleting the node in BST*/
-	   //tt.Delete(root, 30);
-	   //tt.inOrder(root);
+	  /*
 
        System.out.println("\nDelete 20");
        tt.Delete(root,20);
@@ -240,14 +293,17 @@ public class testTree {
        tt.Delete(root,50);
        System.out.println("Inorder traversal of the modified tree");
        tt.inOrder(root);
-	   
+	   */
 	   
 	   /*Calculating the height of the tree recursive*/
 	   
 	  System.out.println("Height of the tree:"+tt.getHeight(root));
-	   
 	  
-	   
+	  tt.levelOrder(root);
+	  System.out.println();
+	 
+	  System.out.println("DFS traveral of the tree");
+	  tt.DFS(root);
 	   
 	}
 }

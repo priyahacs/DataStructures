@@ -82,6 +82,28 @@ public class BinarySearchTreePractise {
 	}
 	
 	
+	/*Given two Binary Trees, write a function that returns true 
+	 * if two trees are mirror of each other, else false. For example, 
+	 * the function should return true for following input trees.*/
+	public boolean checkMirror(BinaryTreeNode root1, BinaryTreeNode root2)
+	{
+		if(root1 == null && root2 == null)
+		{
+			return true;
+		}
+		
+		if(root1 != null && root2 != null)
+		{
+			return (root1.getData() == root2.getData() &&
+					checkMirror(root1.getLeft(),root2.getRight())&&
+					checkMirror(root1.getRight(),root2.getLeft()));
+		}
+		return false;
+	}
+	
+	
+	
+	
 	
 	/* Calculate height recursively
 	 * max_depth = max(max depth of left subtree,  
@@ -179,6 +201,18 @@ public class BinarySearchTreePractise {
 		else
 		{
 			System.out.println("element not found");
+		}
+		
+		/* Check whether two trees are mirror of one another*/
+		boolean result1 = bst.checkMirror(root,root2);
+		if(result1)
+		{
+			System.out.println("Trees are Mirrors");
+		}
+		else
+		{
+			System.out.println("Trees are not Mirror");
+			
 		}
 		
 	}
