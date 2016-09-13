@@ -1,3 +1,4 @@
+package Strings;
 import java.util.*;
 import java.io.*;
 public class palindrome {
@@ -6,7 +7,7 @@ public class palindrome {
 		
 		Scanner s1 = new Scanner(System.in);
 		String A = s1.next();
-		char[] B = A.toCharArray();
+		/*char[] B = A.toCharArray();
 		//System.out.println(B);
 		char[] C = new char[A.length()];
         int j = 0;
@@ -25,8 +26,24 @@ public class palindrome {
         else
         {
             System.out.println("No");
-        }
-        
+        }*/
+		
+		int j = A.length()-1;
+		boolean flag = true;
+		for(int i=0;i<j;i++,j--)
+		{
+			if(A.charAt(i) != A.charAt(j))
+			{
+				flag = false;
+				break;
+				
+			}
+				
+		}	
+        if(flag)
+        	System.out.println("YES");
+        else
+        	System.out.println("NO");
 		
 	}
 

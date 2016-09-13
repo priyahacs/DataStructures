@@ -27,9 +27,9 @@ public class checkUnique {
 		for(int i=0;i<input.length();i++)
 		{
 			char c = input.charAt(i);
-			int a = input.indexOf(c);
+			//int a = input.indexOf(c);
 			int b = input.lastIndexOf(c);
-			if(a != b)
+			if(i != b)
 			{
 				return false;
 			}
@@ -76,7 +76,7 @@ public class checkUnique {
 	
 	public static void main(String[] args)
 	{
-		String A ="hewl2d2A";
+		String A ="hewld2A";
 		
 		boolean result = check_unique(A);
 		

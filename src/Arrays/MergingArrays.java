@@ -49,11 +49,11 @@ public class MergingArrays {
         /* Initialize arrays */
         int mPlusN[] = {2, 8, -1, -1, -1, 13, -1, 15, 20};
         int N[] = {5, 7, 9, 25};
-        int n = N.length;
-        int m = mPlusN.length - n;
+        //int n = N.length;
+        //int m = mPlusN.length - n;
  
         /*Move the m elements at the end of mPlusN*/
-        moveToEnd(mPlusN, m + n);
+        moveToEnd(mPlusN, mPlusN.length);
         
         System.out.println(Arrays.toString(mPlusN));
         
