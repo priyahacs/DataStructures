@@ -1,8 +1,9 @@
 package Trees;
-
+import java.util.*;
 public class BinarySearchTreePractise {
 	
 	int count = 0;
+	static int sizeleaf = 0; 
 	public BinaryTreeNode insertNode(BinaryTreeNode root, int data)
 	{
 		if (root == null)
@@ -59,6 +60,38 @@ public class BinarySearchTreePractise {
 			postOrder(root.getLeft());
 			postOrder(root.getRight());
 			System.out.println(root.getData());
+		}
+		
+	}
+	
+	
+	/*level-order-traversal*/
+	public void levelOrder(BinaryTreeNode root)
+	{
+		Queue<BinaryTreeNode> qm = new LinkedList<BinaryTreeNode>();
+		
+		if(root !=null)
+		{
+			qm.offer(root);
+			
+			while(!qm.isEmpty())
+			{
+				BinaryTreeNode temp = qm.poll();
+				System.out.println(temp.getData());
+				if(temp.getLeft() != null)
+				{
+					qm.offer(temp.getLeft());
+				}
+				if(temp.getRight() != null)
+				{
+					qm.offer(temp.getRight());
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.println("NO ELEMENTS TO PRINT/TREE EMPTY");
 		}
 		
 	}
@@ -121,6 +154,48 @@ public class BinarySearchTreePractise {
 	}
 	
 	
+	/*Calculate size of leaf nodes*/
+	public int sizeOfLeaf(BinaryTreeNode root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		
+		if(root.getLeft() == null && root.getRight() == null)
+		{
+			return 1;
+		}
+		else
+		{
+				return(sizeOfLeaf(root.getLeft()) + sizeOfLeaf(root.getRight()));
+		}
+		
+		
+	}
+	
+	/*Sum of the whole tree*/
+	
+	public int sumOfTree(BinaryTreeNode root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		return(root.getData()+ sumOfTree(root.getLeft())+ sumOfTree(root.getRight()));
+	}
+	
+	
+	/*Total number of nodes/ size of the tree*/
+	
+	public int totalNoNodes(BinaryTreeNode root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		return (totalNoNodes(root.getLeft())+ totalNoNodes(root.getRight())+1);
+	}
 	
 	public BinaryTreeNode searchBST(BinaryTreeNode root, int num)
 	{
@@ -141,6 +216,22 @@ public class BinarySearchTreePractise {
 		return temp;
 	}
 	
+	
+	/*Least common ancestor*/
+	
+	public BinaryTreeNode LCA(BinaryTreeNode root, int n1, int n2)
+	{
+		if(root == null)
+			return root;
+		
+		if(root.getData() > n1 &&root.getData() > n2 )
+			return LCA(root.getLeft(),n1,n2);
+		
+		if(root.getData()< n1 &&root.getData()< n2 )
+			return LCA(root.getRight(),n1,n2);
+		
+		return root;
+	}	
 	
 	
 	
@@ -163,11 +254,12 @@ public class BinarySearchTreePractise {
 		System.out.println("InOrder");
 		//bst.inOrder(root);
 		System.out.println("preOrder");
-		bst.preOrder(root);
+		//bst.preOrder(root);
 		System.out.println("postOrder");
 		//bst.postOrder(root);
 		//System.out.println(bst.count);
-		
+		System.out.println("levelOrder");
+		bst.levelOrder(root);
 		/*Find 2 trees are identical*/
 		int [] arr2 = {50,30,20,40,70,60};
 		BinaryTreeNode root2 = new BinaryTreeNode(arr2[0]);
@@ -215,6 +307,25 @@ public class BinarySearchTreePractise {
 			System.out.println("Trees are not Mirror");
 			
 		}
+		/*Calculate size of leaf nodes*/
+		int size = bst.sizeOfLeaf(root);
+		System.out.println("Size of leaf nodes:"+size);
+		
+		
+		/*Calculate sum of all the nodes*/
+		int sum = bst.sumOfTree(root);
+		System.out.println("Sum of all the nodes:"+sum);
+		
+		/*Calculate size of leaf nodes*/
+		int total = bst.totalNoNodes(root);
+		System.out.println("Size of nodes:"+total);
+		
+		
+		/*Least common ancestor*/
+		
+		BinaryTreeNode res1 = bst.LCA(root,40,20 );
+		if(res1 !=null)
+			System.out.println(res1.getData());
 		
 	}
 	

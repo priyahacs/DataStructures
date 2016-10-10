@@ -162,7 +162,8 @@ public class testTree {
 			}
 			
 			
-			/*Find the inOrder successor of the right subtree, ie. minimum value of the right subtree*/
+			/*Find the inOrder successor of the right subtree, ie. 
+			 * minimum value of the right subtree*/
 			root.setData(findMin(root));
 			root.setRight(Delete(root.getRight(),root.getData()));
 			
@@ -231,6 +232,52 @@ public class testTree {
 			}
 			
 		}
+	}
+	
+	
+	/*Max Sum of any level */
+	
+	public static int maxSumAtAllLevels(Node root)
+	{
+		int currentSum = 0;
+		int maxSum = 0;
+		
+		Queue<Node> qm = new LinkedList<Node>();
+		
+		if(root == null)
+		{
+			return 0;
+		}
+		
+		qm.offer(root);
+		qm.offer(null);
+		
+		while(!qm.isEmpty())
+		{
+			Node temp = qm.poll();
+			
+			if(temp != null)
+			{
+				if(temp.getLeft() !=null)
+					qm.offer(temp.getLeft());
+				
+				if(temp.getRight() !=null)
+					qm.offer(temp.getRight());
+				
+				currentSum += temp.getData();
+			}
+			else
+			{
+				if(currentSum > maxSum)
+					maxSum = currentSum;
+				currentSum = 0;
+				if(!qm.isEmpty())
+					qm.offer(null);
+				
+			}
+		}
+		return maxSum;
+		
 	}
 	
 	
@@ -304,6 +351,10 @@ public class testTree {
 	 
 	  System.out.println("DFS traveral of the tree");
 	  tt.DFS(root);
+	  
+	  System.out.println(maxSumAtAllLevels(root));
 	   
 	}
+	
+	
 }
