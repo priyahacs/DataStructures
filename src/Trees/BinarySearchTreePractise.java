@@ -43,8 +43,9 @@ public class BinarySearchTreePractise {
 		if(root !=null )
 		{
 			System.out.println(root.getData());
-			inOrder(root.getLeft());
-			inOrder(root.getRight());
+			
+			preOrder(root.getLeft());
+			preOrder(root.getRight());
 		}
 		
 	}
@@ -55,8 +56,8 @@ public class BinarySearchTreePractise {
 	{
 		if(root !=null )
 		{
-			inOrder(root.getLeft());
-			inOrder(root.getRight());
+			postOrder(root.getLeft());
+			postOrder(root.getRight());
 			System.out.println(root.getData());
 		}
 		
@@ -160,12 +161,12 @@ public class BinarySearchTreePractise {
 			root = bst.insertNode(root, arr[i]);
 		}
 		System.out.println("InOrder");
-		bst.inOrder(root);
+		//bst.inOrder(root);
 		System.out.println("preOrder");
-		//bst.preOrder(root);
+		bst.preOrder(root);
 		System.out.println("postOrder");
 		//bst.postOrder(root);
-		System.out.println(bst.count);
+		//System.out.println(bst.count);
 		
 		/*Find 2 trees are identical*/
 		int [] arr2 = {50,30,20,40,70,60};
